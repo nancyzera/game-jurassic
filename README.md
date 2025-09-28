@@ -1,73 +1,42 @@
-# Welcome to your Lovable project
+Jurassic Hack Game 🎮🦖
 
-## Project info
+Jurassic Hack is an immersive prehistoric adventure game that lets players explore the age of dinosaurs. Players must navigate dangerous landscapes, find lost artifacts, and survive encounters with massive prehistoric creatures.
 
-**URL**: https://lovable.dev/projects/52336677-f3e0-49ab-ab96-76b60ed759a7
+Key Features
 
-## How can I edit this code?
+Interactive Prehistoric World: Explore lush environments filled with dinosaurs and hidden treasures.
 
-There are several ways of editing your application.
+Lost Item Quest: Search for and collect rare items scattered across the game world.
 
-**Use Lovable**
+Survival Challenges: Avoid dangers such as carnivorous dinosaurs, natural traps, and environmental hazards.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/52336677-f3e0-49ab-ab96-76b60ed759a7) and start prompting.
+Dynamic Gameplay: Engage in thrilling escapes, strategic exploration, and problem-solving adventures.
 
-Changes made via Lovable will be committed automatically to this repo.
+Player Profile & Progress: Track achievements, items collected, and survival stats.
 
-**Use your preferred IDE**
+Immersive Audio & Visuals: Includes engaging background music and realistic prehistoric sound effects.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Objective
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Players aim to survive, explore, and collect all lost items while escaping dangers to uncover the mysteries of the prehistoric world.
 
-Follow these steps:
+How to Play
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Use WASD keys to move and mouse to look around.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Interact with items and objects in the environment to collect or use them.
 
-# Step 3: Install the necessary dependencies.
-npm i
+Avoid dinosaurs and environmental hazards to survive.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Complete quests and challenges to progress through levels.
 
-**Edit a file directly in GitHub**
+Technologies Used
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+TypeScript for core gameplay logic and interactions.
 
-**Use GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+ This is version one , stay still for next versions
 
-## What technologies are used for this project?
+HTML & CSS for UI and styling.
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/52336677-f3e0-49ab-ab96-76b60ed759a7) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Optional: Three.js for 3D environments and immersive interactions.
