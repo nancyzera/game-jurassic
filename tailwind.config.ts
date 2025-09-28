@@ -47,6 +47,23 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Game-specific survival colors
+        health: "hsl(var(--health))",
+        stamina: "hsl(var(--stamina))",
+        warning: "hsl(var(--warning))",
+        jungle: {
+          primary: "hsl(var(--jungle-primary))",
+          secondary: "hsl(var(--jungle-secondary))",
+        },
+        ancient: {
+          gold: "hsl(var(--ancient-gold))",
+        },
+        stone: {
+          gray: "hsl(var(--stone-gray))",
+        },
+        earth: {
+          brown: "hsl(var(--earth-brown))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
