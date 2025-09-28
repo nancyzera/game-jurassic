@@ -8,6 +8,7 @@ interface GameHUDProps {
   collectedItems: number;
   totalItems: number;
   onToggleInventory: () => void;
+  currentLevel: string;
 }
 
 export const GameHUD = ({ 
@@ -15,7 +16,8 @@ export const GameHUD = ({
   stamina, 
   collectedItems, 
   totalItems, 
-  onToggleInventory 
+  onToggleInventory,
+  currentLevel
 }: GameHUDProps) => {
   const healthColor = health > 60 ? "bg-health" : health > 30 ? "bg-warning" : "bg-destructive";
   const staminaColor = stamina > 30 ? "bg-stamina" : "bg-warning";
@@ -75,7 +77,7 @@ export const GameHUD = ({
           <div className="bg-card/80 backdrop-blur-sm border border-border rounded-lg p-3 min-w-[180px]">
             <div className="flex items-center gap-2 mb-2">
               <Target className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium text-foreground">Progress</span>
+              <span className="text-sm font-medium text-foreground">{currentLevel}</span>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-accent">

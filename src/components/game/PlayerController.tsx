@@ -9,6 +9,7 @@ interface PlayerControllerProps {
   onUseStamina: (amount: number) => void;
   onRestoreStamina: (amount: number) => void;
   onToggleInventory?: () => void;
+  onPositionUpdate?: (position: [number, number, number]) => void;
 }
 
 export const PlayerController = ({ 
@@ -16,7 +17,8 @@ export const PlayerController = ({
   stamina, 
   onUseStamina, 
   onRestoreStamina,
-  onToggleInventory
+  onToggleInventory,
+  onPositionUpdate
 }: PlayerControllerProps) => {
   const { camera } = useThree();
   const controlsRef = useRef<any>();
@@ -163,6 +165,9 @@ export const PlayerController = ({
     if (camera.position.x < -maxDistance) camera.position.x = -maxDistance;
     if (camera.position.z > maxDistance) camera.position.z = maxDistance;
     if (camera.position.z < -maxDistance) camera.position.z = -maxDistance;
+
+    // Update position for mini-map
+    onPositionUpdate?.([camera.position.x, camera.position.y, camera.position.z]);
   });
 
   return (

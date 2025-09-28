@@ -8,6 +8,7 @@ interface GameWorldProps {
   items: GameItem[];
   onItemCollect: (itemId: string) => void;
   onPlayerDamage: (damage: number) => void;
+  environment: "jungle" | "cave" | "river";
 }
 
 // Dinosaur component with basic AI
@@ -213,10 +214,132 @@ const Terrain = () => {
   );
 };
 
-export const GameWorld = ({ items, onItemCollect, onPlayerDamage }: GameWorldProps) => {
+export const GameWorld = ({ items, onItemCollect, onPlayerDamage, environment }: GameWorldProps) => {
+  
+  // Environment-specific terrain rendering
+  const TerrainByEnvironment = () => {
+    switch (environment) {
+      case "cave":
+        return (
+          <group>
+            {/* Cave floor */}
+            <Box args={[100, 0.1, 100]} position={[0, -0.05, 0]}>
+              <meshStandardMaterial color="#2a1f1a" />
+            </Box>
+            {/* Cave walls and stalactites */}
+            {Array.from({ length: 40 }).map((_, i) => {
+              const x = (Math.random() - 0.5) * 80;
+              const z = (Math.random() - 0.5) * 80;
+              const height = 2 + Math.random() * 6;
+              
+              return (
+                <Cylinder key={i} args={[0.3, 0.6, height]} position={[x, height / 2, z]}>
+                  <meshStandardMaterial color="#4a4037" />
+                </Cylinder>
+              );
+            })}
+          </group>
+        );
+      
+      case "river":
+        return (
+          <group>
+            {/* River ground */}
+            <Box args={[100, 0.1, 100]} position={[0, -0.05, 0]}>
+              <meshStandardMaterial color="#2d4a2a" />
+            </Box>
+            {/* Water areas */}
+            <Box args={[20, 0.05, 100]} position={[0, 0.02, 0]}>
+              <meshStandardMaterial color="#4a7c99" transparent opacity={0.7} />
+            </Box>
+            {/* Riverside rocks */}
+            {Array.from({ length: 35 }).map((_, i) => {
+              const x = (Math.random() - 0.5) * 90;
+              const z = (Math.random() - 0.5) * 90;
+              const size = 0.8 + Math.random() * 1.5;
+              
+              return (
+                <Box 
+                  key={i} 
+                  args={[size, size * 0.8, size * 0.9]} 
+                  position={[x, size * 0.4, z]}
+                  rotation={[0, Math.random() * Math.PI, 0]}
+                >
+                  <meshStandardMaterial color="#5a5a5a" />
+                </Box>
+              );
+            })}
+          </group>
+        );
+      
+      default: // jungle
+        return (
+          <group>
+            {/* Ground */}
+            <Box args={[100, 0.1, 100]} position={[0, -0.05, 0]}>
+              <meshStandardMaterial color="#2d5016" />
+            </Box>
+
+            {/* Trees */}
+            {Array.from({ length: 50 }).map((_, i) => {
+              const x = (Math.random() - 0.5) * 80;
+              const z = (Math.random() - 0.5) * 80;
+              const height = 3 + Math.random() * 4;
+              
+              return (
+                <group key={i} position={[x, 0, z]}>
+                  {/* Trunk */}
+                  <Cylinder args={[0.3, 0.4, height]} position={[0, height / 2, 0]}>
+                    <meshStandardMaterial color="#4a2c1a" />
+                  </Cylinder>
+                  {/* Leaves */}
+                  <Sphere args={[1.5]} position={[0, height + 1, 0]}>
+                    <meshStandardMaterial color="#1a5c1a" />
+                  </Sphere>
+                </group>
+              );
+            })}
+
+            {/* Rocks */}
+            {Array.from({ length: 30 }).map((_, i) => {
+              const x = (Math.random() - 0.5) * 70;
+              const z = (Math.random() - 0.5) * 70;
+              const size = 0.5 + Math.random() * 1;
+              
+              return (
+                <Box 
+                  key={i} 
+                  args={[size, size * 0.7, size * 0.8]} 
+                  position={[x, size * 0.35, z]}
+                  rotation={[0, Math.random() * Math.PI, 0]}
+                >
+                  <meshStandardMaterial color="#666666" />
+                </Box>
+              );
+            })}
+
+            {/* Grass patches */}
+            {Array.from({ length: 100 }).map((_, i) => {
+              const x = (Math.random() - 0.5) * 90;
+              const z = (Math.random() - 0.5) * 90;
+              
+              return (
+                <Box 
+                  key={i} 
+                  args={[0.1, 0.5, 0.1]} 
+                  position={[x, 0.25, z]}
+                >
+                  <meshStandardMaterial color="#2d7016" />
+                </Box>
+              );
+            })}
+          </group>
+        );
+    }
+  };
   return (
     <group>
-      <Terrain />
+      <TerrainByEnvironment />
       
       {/* Collectible items */}
       {items.map(item => (
@@ -227,12 +350,12 @@ export const GameWorld = ({ items, onItemCollect, onPlayerDamage }: GameWorldPro
         />
       ))}
 
-      {/* Dinosaurs */}
+      {/* Dinosaurs - dynamically positioned */}
       <Dinosaur position={[10, 0, 5]} onPlayerDamage={onPlayerDamage} />
       <Dinosaur position={[-15, 0, -10]} onPlayerDamage={onPlayerDamage} />
       <Dinosaur position={[20, 0, -20]} onPlayerDamage={onPlayerDamage} />
-      <Dinosaur position={[-25, 0, 15]} onPlayerDamage={onPlayerDamage} />
-      <Dinosaur position={[5, 0, 25]} onPlayerDamage={onPlayerDamage} />
+      {environment !== "jungle" && <Dinosaur position={[-25, 0, 15]} onPlayerDamage={onPlayerDamage} />}
+      {environment === "river" && <Dinosaur position={[5, 0, 25]} onPlayerDamage={onPlayerDamage} />}
     </group>
   );
 };

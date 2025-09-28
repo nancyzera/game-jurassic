@@ -4,9 +4,11 @@ import { Trophy, RotateCcw, Star } from "lucide-react";
 
 interface WinScreenProps {
   onRestart: () => void;
+  levelName: string;
+  isLastLevel: boolean;
 }
 
-export const WinScreen = ({ onRestart }: WinScreenProps) => {
+export const WinScreen = ({ onRestart, levelName, isLastLevel }: WinScreenProps) => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center relative overflow-hidden">
       {/* Celebration background */}
@@ -44,14 +46,16 @@ export const WinScreen = ({ onRestart }: WinScreenProps) => {
           {/* Victory Message */}
           <div className="space-y-4">
             <h1 className="text-5xl font-bold text-accent">
-              VICTORY!
+              {isLastLevel ? "GAME COMPLETE!" : "LEVEL COMPLETE!"}
             </h1>
             <h2 className="text-2xl font-bold text-primary">
-              Jurassic Hack Completed!
+              {levelName} - Cleared!
             </h2>
             <p className="text-lg text-muted-foreground max-w-md mx-auto">
-              You found all the lost items and survived the prehistoric wilderness! 
-              The ancient artifacts are yours to keep.
+              {isLastLevel 
+                ? "Congratulations! You've completed all levels and escaped the Jurassic world!"
+                : "Excellent work! You found all items in this level. Ready for the next challenge?"
+              }
             </p>
           </div>
 
@@ -120,7 +124,7 @@ export const WinScreen = ({ onRestart }: WinScreenProps) => {
               className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-lg py-6"
             >
               <RotateCcw className="w-5 h-5 mr-2" />
-              PLAY AGAIN
+              {isLastLevel ? "PLAY AGAIN" : "CONTINUE ADVENTURE"}
             </Button>
             
             <div className="flex gap-4">
