@@ -10,6 +10,7 @@ interface PlayerControllerProps {
   onRestoreStamina: (amount: number) => void;
   onToggleInventory?: () => void;
   onPositionUpdate?: (position: [number, number, number]) => void;
+  onMove?: (direction: string) => void; // Add onMove prop
 }
 
 export const PlayerController = ({ 
@@ -18,7 +19,8 @@ export const PlayerController = ({
   onUseStamina, 
   onRestoreStamina,
   onToggleInventory,
-  onPositionUpdate
+  onPositionUpdate,
+  onMove // Destructure onMove prop
 }: PlayerControllerProps) => {
   const { camera } = useThree();
   const controlsRef = useRef<any>();
@@ -40,18 +42,22 @@ export const PlayerController = ({
         case 'KeyW':
         case 'ArrowUp':
           setMovement(prev => ({ ...prev, forward: true }));
+          onMove?.("up"); // Call onMove when ArrowUp is pressed
           break;
         case 'KeyS':
         case 'ArrowDown':
           setMovement(prev => ({ ...prev, backward: true }));
+          onMove?.("down"); // Call onMove when ArrowDown is pressed
           break;
         case 'KeyA':
         case 'ArrowLeft':
           setMovement(prev => ({ ...prev, left: true }));
+          onMove?.("left"); // Call onMove when ArrowLeft is pressed
           break;
         case 'KeyD':
         case 'ArrowRight':
           setMovement(prev => ({ ...prev, right: true }));
+          onMove?.("right"); // Call onMove when ArrowRight is pressed
           break;
         case 'ShiftLeft':
         case 'ShiftRight':
@@ -96,7 +102,7 @@ export const PlayerController = ({
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keyup', handleKeyUp);
     };
-  }, [onToggleInventory]);
+  }, [onToggleInventory, onMove]);
 
   useFrame((state, delta) => {
     if (!controlsRef.current) return;
