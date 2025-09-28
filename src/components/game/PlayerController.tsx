@@ -170,6 +170,8 @@ export const PlayerController = ({
       ref={controlsRef}
       args={[camera]}
       pointerSpeed={0.5}
+      onLock={() => console.log('Mouse locked')}
+      onUnlock={() => console.log('Mouse unlocked')}
     />
   );
 };

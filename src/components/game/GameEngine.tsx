@@ -140,16 +140,18 @@ export const GameEngine = () => {
   }
 
   return (
-    <div className="w-full h-screen relative game-cursor">
+    <div className="w-full h-screen relative overflow-hidden">
       <Canvas
         camera={{ position: [0, 2, 0], fov: 75 }}
         className="w-full h-full"
+        gl={{ antialias: true }}
       >
         <Suspense fallback={null}>
           <Sky sunPosition={[100, 20, 100]} />
           <Environment preset="forest" />
           <ambientLight intensity={0.4} />
           <directionalLight position={[10, 10, 5]} intensity={1} />
+          <fog attach="fog" args={['#ffffff', 50, 200]} />
           
           <GameWorld 
             items={GAME_ITEMS}
