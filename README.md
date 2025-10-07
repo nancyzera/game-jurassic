@@ -1,4 +1,4 @@
-Jurassic Hack Game 🎮🦖
+Jurassic-Hack Game 🎮🦖
 
 Jurassic Hack is an immersive prehistoric adventure game that lets players explore the age of dinosaurs. Players must navigate dangerous landscapes, find lost artifacts, and survive encounters with massive prehistoric creatures.
 
