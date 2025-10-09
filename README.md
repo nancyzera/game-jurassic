@@ -40,3 +40,4 @@ TypeScript for core gameplay logic and interactions.
 HTML & CSS for UI and styling.
 
 Optional: Three.js for 3D environments and immersive interactions.
+ thanks
