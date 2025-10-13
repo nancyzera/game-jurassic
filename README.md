@@ -30,7 +30,7 @@ Avoid dinosaurs and environmental hazards to survive.
 
 Complete quests and challenges to progress through levels.
 
-Technologies Used
+Technologies Used in jurrasic game
 
 TypeScript for core gameplay logic and interactions.
 
